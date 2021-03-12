@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     String search=prefs.getSearch();
     getPokes(search);
 
-
     // Methode pour recupérer les différents films...
     public List<Poke> getPokes(String searchTerm) {
         pokeList.clear();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         poke.setType("Type: ");
                         poke.setSprite(pokeObj.getString("Sprite"));
                         poke.setNumber(pokeObj.getString("Number"));
-                        ///Log.d("Movies =: ", movie.getTitle());
+                        Log.d("Pokes =: ", poke.getName());
                         pokeList.add(poke);
 
                     }

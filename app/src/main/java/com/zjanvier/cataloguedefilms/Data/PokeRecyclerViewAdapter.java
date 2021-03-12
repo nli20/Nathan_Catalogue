@@ -17,16 +17,13 @@ import com.zjanvier.cataloguedefilms.R;
 
 import java.util.List;
 
-/**
- * Created by Janvier Zagabe on 2021-03-03.
- */
 public class PokeRecyclerViewAdapter extends RecyclerView.Adapter<PokeRecyclerViewAdapter.ViewHolder>
 {
     private Context context;
     private List<Poke> pokeList;
-    public PokeRecyclerViewAdapter(Context context, List<Poke> movies) {
+    public PokeRecyclerViewAdapter(Context context, List<Poke> pokes) {
         this.context=context;
-        pokeList=poke;
+        pokeList=pokes;
     }
 
     @NonNull
@@ -51,7 +48,7 @@ public class PokeRecyclerViewAdapter extends RecyclerView.Adapter<PokeRecyclerVi
                 .fit()
                 .placeholder(android.R.drawable.ic_btn_speak_now)
                 .into(holder.sprite);
-
+        //holder.number.setText(poke.getNumber());
     }
 
     @Override
