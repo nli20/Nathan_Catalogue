@@ -13,38 +13,29 @@
 
 
         <ImageView
-            android:id="@+id/movieImageID"
+            android:id="@+id/pokeImageID"
             android:background="@android:color/background_dark"
             android:layout_width="90dp"
             android:layout_height="90dp" />
 
 
         <TextView
-            android:id="@+id/movieTitleID"
+            android:id="@+id/pokeNameID"
             android:paddingLeft="5dp"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/movieImageID"
+            android:layout_toRightOf="@id/pokeImageID"
             android:text="Movie Title"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/movieReleaseID"
+            android:id="@+id/pokeTypeID"
             android:padding="5dp"
-            android:layout_toRightOf="@id/movieImageID"
+            android:layout_toRightOf="@id/pokeImageID"
             android:text="Released:"
-            android:layout_below="@id/movieTitleID"
+            android:layout_below="@id/pokeNameID"
             android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/movieCatID"
-            android:padding="5dp"
-            android:text="Category"
-            android:layout_below="@id/movieReleaseID"
-            android:layout_toRightOf="@id/movieImageID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

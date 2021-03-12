@@ -3,9 +3,6 @@ package com.zjanvier.cataloguedefilms.Util;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-/**
- * Created by Janvier Zagabe on 2021-03-03.
- */
 public class Prefs {
 
     SharedPreferences sharedPreferences;
@@ -20,6 +17,6 @@ public class Prefs {
     }
 
     public String getSearch() {
-        return sharedPreferences.getString("search", "Superman");
+        return sharedPreferences.getString("search", "bulbasaur");
     }
 }

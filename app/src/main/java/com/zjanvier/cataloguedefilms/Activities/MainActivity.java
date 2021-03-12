@@ -1,6 +1,5 @@
 package com.zjanvier.cataloguedefilms.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,8 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.zjanvier.cataloguedefilms.Data.MovieRecyclerViewAdapter;
-import com.zjanvier.cataloguedefilms.Model.Movie;
+import com.zjanvier.cataloguedefilms.Data.PokeRecyclerViewAdapter;
+import com.zjanvier.cataloguedefilms.Model.Poke;
 import com.zjanvier.cataloguedefilms.Util.Constants;
 import com.zjanvier.cataloguedefilms.Util.Prefs;
 import com.zjanvier.cataloguedefilms.R;
@@ -33,8 +32,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private MovieRecyclerViewAdapter movieRecyclerViewAdapter;
-    private List<Movie> movieList;
+    private PokeRecyclerViewAdapter pokeRecyclerViewAdapter;
+    private List<Poke> pokeList;
     private RequestQueue queue;
 
 
@@ -48,53 +47,57 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        movieList=new ArrayList<>();
+        pokeList=new ArrayList<>();
 
         //Chercher les préferences pour le dernière recherche...
 
         Prefs prefs = new Prefs(MainActivity.this);
         String search = prefs.getSearch();
 
-        movieList = getMovies(search);
-        movieRecyclerViewAdapter = new MovieRecyclerViewAdapter(this, movieList );
-        recyclerView.setAdapter(movieRecyclerViewAdapter);
-        movieRecyclerViewAdapter.notifyDataSetChanged();
+        pokeList = getPokes(search);
+        pokeRecyclerViewAdapter = new PokeRecyclerViewAdapter(this, pokeList );
+        recyclerView.setAdapter(pokeRecyclerViewAdapter);
+        pokeRecyclerViewAdapter.notifyDataSetChanged();
 
 
     }
 
+    //Tester
+    Prefs prefs =new Prefs(MainActivity.this);
+    String search=prefs.getSearch();
+    getPokes(search);
+
 
     // Methode pour recupérer les différents films...
-    public List<Movie> getMovies(String searchTerm) {
-        movieList.clear();
+    public List<Poke> getPokes(String searchTerm) {
+        pokeList.clear();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                Constants.URL_LEFT + searchTerm + Constants.URL_RIGHT + Constants.API_KEY,
+                Constants.URL_LEFT + searchTerm,
                 null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
 
                 try{
-                    JSONArray moviesArray = response.getJSONArray("Search");
+                    JSONArray pokesArray = response.getJSONArray("Search");
 
-                    for (int i = 0; i < moviesArray.length(); i++) {
+                    for (int i = 0; i < pokesArray.length(); i++) {
 
-                        JSONObject movieObj = moviesArray.getJSONObject(i);
+                        JSONObject pokeObj = pokesArray.getJSONObject(i);
 
-                        Movie movie = new Movie();
-                        movie.setTitle(movieObj.getString("Title"));
-                        movie.setYear("Year Released: " + movieObj.getString("Year"));
-                        movie.setMovieType("Type: " + movieObj.getString("Type"));
-                        movie.setPoster(movieObj.getString("Poster"));
-                        movie.setImdbId(movieObj.getString("imdbID"));
+                        Poke poke = new Poke();
+                        poke.setName(pokeObj.getString("Name"));
+                        poke.setType("Type: ");
+                        poke.setSprite(pokeObj.getString("Sprite"));
+                        poke.setNumber(pokeObj.getString("Number"));
                         ///Log.d("Movies =: ", movie.getTitle());
-                        movieList.add(movie);
+                        pokeList.add(poke);
 
                     }
 
                     // pour mettre à jour les résultats de la recherche
-                    movieRecyclerViewAdapter.notifyDataSetChanged();
+                    pokeRecyclerViewAdapter.notifyDataSetChanged();
 
 
                 }catch (JSONException e) {
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(jsonObjectRequest);
 
-        return movieList;
+        return pokeList;
 
     }
 
@@ -128,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 if(!query.isEmpty())
                 {
                     prefs.setSearch(query);
-                    movieList.clear();
-                    getMovies(query);
+                    pokeList.clear();
+                    getPokes(query);
 
                     //gestion du clavier
 

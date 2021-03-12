@@ -13,7 +13,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-import com.zjanvier.cataloguedefilms.Model.Movie;
 import com.zjanvier.cataloguedefilms.R;
 import com.zjanvier.cataloguedefilms.Util.Constants;
 

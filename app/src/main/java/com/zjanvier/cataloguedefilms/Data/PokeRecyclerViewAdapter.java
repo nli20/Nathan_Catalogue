@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.zjanvier.cataloguedefilms.Activities.DetailsActivity;
-import com.zjanvier.cataloguedefilms.Model.Movie;
+import com.zjanvier.cataloguedefilms.Model.Poke;
 import com.zjanvier.cataloguedefilms.R;
 
 import java.util.List;
@@ -20,18 +20,18 @@ import java.util.List;
 /**
  * Created by Janvier Zagabe on 2021-03-03.
  */
-public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder>
+public class PokeRecyclerViewAdapter extends RecyclerView.Adapter<PokeRecyclerViewAdapter.ViewHolder>
 {
     private Context context;
-    private List<Movie> movieList;
-    public MovieRecyclerViewAdapter(Context context, List<Movie> movies) {
+    private List<Poke> pokeList;
+    public PokeRecyclerViewAdapter(Context context, List<Poke> movies) {
         this.context=context;
-        movieList=movies;
+        pokeList=poke;
     }
 
     @NonNull
     @Override
-    public MovieRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PokeRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ///return null;
         View view= LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.film,parent,false);
@@ -39,31 +39,30 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieRecyclerViewAdapter.ViewHolder holder, int position) {
-        Movie movie = movieList.get(position);
-        String posterLink =  movie.getPoster();
+    public void onBindViewHolder(@NonNull PokeRecyclerViewAdapter.ViewHolder holder, int position) {
+        Poke poke = pokeList.get(position);
+        String spriteLink =  poke.getSprite();
 
-        holder.title.setText(movie.getTitle());
-        holder.type.setText(movie.getMovieType());
+        holder.name.setText(poke.getName());
+        holder.type.setText(poke.getType());
 
         Picasso.get()
-                .load(posterLink)
+                .load(spriteLink)
                 .fit()
                 .placeholder(android.R.drawable.ic_btn_speak_now)
-                .into(holder.poster);
-        holder.year.setText(movie.getYear());
+                .into(holder.sprite);
+
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return pokeList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView title;
-        ImageView poster;
-        TextView year;
+        TextView name;
+        ImageView sprite;
         TextView type;
 
         public ViewHolder(@NonNull View itemView, final Context ctx)
@@ -71,21 +70,20 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
             super(itemView);
             context=ctx;
 
-            title = itemView.findViewById(R.id.movieTitleID);
-            poster = itemView.findViewById(R.id.movieImageID);
-            year = itemView.findViewById(R.id.movieReleaseID);
-            type = itemView.findViewById(R.id.movieCatID);
+            name = itemView.findViewById(R.id.pokeNameID);
+            sprite = itemView.findViewById(R.id.pokeImageID);
+            type = itemView.findViewById(R.id.pokeTypeID);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    Movie movie = movieList.get(getAdapterPosition());
+                    Poke poke = pokeList.get(getAdapterPosition());
 
                     Intent intent = new Intent(context, DetailsActivity.class);
 
-                    intent.putExtra("movie", movie);
+                    intent.putExtra("poke", poke);
                     ctx.startActivity(intent);
 
 
