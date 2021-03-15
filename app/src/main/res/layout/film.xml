@@ -21,23 +21,73 @@
 
         <TextView
             android:id="@+id/pokeNameID"
-            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@id/pokeImageID"
-            android:text="Poke Name"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:paddingLeft="5dp"
+            android:text="Name"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/pokeTypeID"
-            android:padding="5dp"
-            android:layout_toRightOf="@id/pokeImageID"
-            android:text="Released:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/pokeNameID"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/pokeImageID"
+            android:padding="5dp"
+            android:text="Type:" />
+
+        <TextView
+            android:id="@+id/pokeNumberID"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pokeNameID"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="31dp"
+            android:layout_toRightOf="@id/pokeImageID"
+            android:padding="5dp"
+            android:text="Number:" />
+
+        <TextView
+            android:id="@+id/pokeAbilityID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pokeNameID"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@id/pokeImageID"
+            android:padding="5dp"
+            android:text="Ability:" />
+
+        <TextView
+            android:id="@+id/pokeHeightID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pokeNameID"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="92dp"
+            android:layout_toRightOf="@id/pokeImageID"
+            android:padding="5dp"
+            android:text="Height:" />
+
+        <TextView
+            android:id="@+id/pokeWeightID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pokeNameID"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="124dp"
+            android:layout_toRightOf="@id/pokeImageID"
+            android:padding="5dp"
+            android:text="Weight:" />
 
     </RelativeLayout>
 

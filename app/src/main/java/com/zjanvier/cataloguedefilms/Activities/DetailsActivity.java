@@ -13,6 +13,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+import com.zjanvier.cataloguedefilms.Model.Poke;
 import com.zjanvier.cataloguedefilms.R;
 import com.zjanvier.cataloguedefilms.Util.Constants;
 
@@ -21,20 +22,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DetailsActivity extends AppCompatActivity {
-    private Movie movie;
-    private TextView movieTitle;
-    private ImageView movieImage;
-    private TextView movieYear;
-    private TextView director;
-    private TextView actors;
-    private TextView category;
-    private TextView rating;
-    private TextView writers;
-    private TextView plot;
-    private TextView boxOffice;
-    private TextView runtime;
+    private Poke poke;
+
+    private TextView pokeName;
+    private ImageView pokeSprite;
+    private String pokeNumber;
+    private TextView pokeAbility;
+    private TextView moves;
+    private TextView pokeHeight;
+    private TextView pokeWeight;
+    private TextView pokeType;
+
     private RequestQueue queue;
-    private String movieId;
 
 
     @Override
@@ -44,39 +43,41 @@ public class DetailsActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        movie = (Movie) getIntent().getSerializableExtra("movie"); // récupérer tous les éléments
-        movieId = movie.getImdbId();
+        poke = (Poke) getIntent().getSerializableExtra("poke"); // récupérer tous les éléments
+        pokeNumber = poke.getNumber();
 
         setUpUI();
-        getMovieDetails(movieId);
+        getPokeDetails(pokeNumber);
 
     }
 
     private void setUpUI() {
 
-        movieTitle = findViewById(R.id.movieTitleIDDets);
-        movieImage =findViewById(R.id.movieImageIDDets);
-        movieYear = findViewById(R.id.movieReleaseIDDets);
-        director = findViewById(R.id.directedByDet);
-        category = findViewById(R.id.movieCatIDDet);
-        rating = findViewById(R.id.movieRatingIDDet);
-        writers = findViewById(R.id.writersDet);
-        plot = findViewById(R.id.plotDet);
-        boxOffice = findViewById(R.id.boxOfficeDet);
-        runtime = findViewById(R.id.runtimeDet);
-        actors = findViewById(R.id.actorsDet);
+        pokeName=findViewById(R.id.pokeNameID);
+        pokeType=findViewById(R.id.pokeTypeID);
+        pokeSprite=findViewById(R.id.pokeImageID);
+        pokeAbility=findViewById(R.id.pokeAbilityID);
+        pokeHeight=findViewById(R.id.pokeHeightID);
+        pokeWeight=findViewById(R.id.pokeWeightID);
+
     }
 
-    private void getMovieDetails(String id) {
+    private void getPokeDetails(String id) {
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                Constants.URL + id + Constants.API_KEY,
+                Constants.URL + id + //Constants.API_KEY,
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try{
-                    if (response.has("Ratings")) { //n'existe pas pour certains cas
+                    String source = null;
+                    String value = null;
+                    pokeName.setText(response.getString("name"));
+                    pokeType.setText(response.getString(""));
+
+
+                    /*if (response.has("Ratings")) { //n'existe pas pour certains cas
                         JSONArray ratings = response.getJSONArray("Ratings");
 
                         String source = null;
@@ -105,7 +106,7 @@ public class DetailsActivity extends AppCompatActivity {
                                 .fit()
                                 .into(movieImage);
                         boxOffice.setText("Box Office: " + response.getString("BoxOffice"));
-                    }
+                    }*/
 
                 }catch (JSONException e) {
                     e.printStackTrace();

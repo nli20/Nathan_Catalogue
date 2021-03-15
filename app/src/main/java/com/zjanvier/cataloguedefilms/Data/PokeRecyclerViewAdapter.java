@@ -61,6 +61,10 @@ public class PokeRecyclerViewAdapter extends RecyclerView.Adapter<PokeRecyclerVi
         TextView name;
         ImageView sprite;
         TextView type;
+        TextView number;
+        TextView ability;
+        TextView height;
+        TextView weight;
 
         public ViewHolder(@NonNull View itemView, final Context ctx)
         {
@@ -70,6 +74,10 @@ public class PokeRecyclerViewAdapter extends RecyclerView.Adapter<PokeRecyclerVi
             name = itemView.findViewById(R.id.pokeNameID);
             sprite = itemView.findViewById(R.id.pokeImageID);
             type = itemView.findViewById(R.id.pokeTypeID);
+            number = itemView.findViewById(R.id.pokeNumberID);
+            ability= itemView.findViewById(R.id.pokeAbilityID);
+            height=itemView.findViewById(R.id.pokeHeightID);
+            weight=itemView.findViewById(R.id.pokeWeightID);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
